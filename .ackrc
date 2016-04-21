@@ -1,31 +1,15 @@
---ignore-dir=Crowdtilt-Internal-API-0.0100
---ignore-dir=locallib
---ignore-dir=locallib2
---ignore-dir=Crowdtilt-Public-Site-0.0100
+--sort-files
+--color
 
 --type-set
-pm=.pm
+erl=.erl,.hrl
 
---type-set
-tt=.tt
+#--pager=less -r
 
---type-set
-sass=.scss
- 
---type-set
-scss=.scss
- 
---ignore-dir=target
---ignore-dir=built
 --ignore-dir=.build
 --ignore-dir=node_modules
---ignore-dir=.sass-cache
---ignore-dir=sass/libs/bourbon
- 
---ignore-file=match:Jemplates.js
---ignore-file=match:mobile-jems.js
---ignore-file=match:mobile-jems.js
---ignore-file=match:main.css
---ignore-file=match:mobile.css
---ignore-file=match:filepicker.css
+--ignore-dir=_rel
+--ignore-dir=ebin
+--ignore-dir=.erlang.mk
+--ignore-file=match:tags
 

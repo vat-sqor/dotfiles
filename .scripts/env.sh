@@ -16,7 +16,7 @@ fi
 eval `$DIRCOLORS ~/.dir_colors`
 
 if [[ "$OS" == "Darwin" ]]; then
-  export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home/
+  export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 fi
 
 export CLI_COLOR='Yes'
@@ -25,7 +25,6 @@ alias grep='grep --color=auto'
 alias gvim='gvim -geom 82x35'
 alias hist='grep '$1' $HOME/.zsh_history'
 alias mem='free -m'
-alias rmd='rm -rf '
 alias la='ls -al'
 alias f='find |grep'
 alias lsd='ls -ld *(-/DN)'
@@ -36,10 +35,10 @@ alias td='tmux detach'
 alias ll='ls -alh'
 alias vi='vim'
 alias v='vim'
-alias hist="git --no-pager log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
+alias hnl="git --no-pager log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
+alias hist="git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
 alias a='ack'
 alias fuck='sudo !!'
-export PATH=$PATH:~/workspace/github/concrete
 rationalise-dot() {
     if [[ $LBUFFER = *.. ]]; then
         LBUFFER+=/..
@@ -53,4 +52,12 @@ bindkey . rationalise-dot
 r() {
     SSH_AUTH_SOCK=`tmux showenv|grep "^SSH_AUTH_SOCK" | cut -d = -f 2`
 }
+
+export GOPATH=$HOME/workspace/GoPath
+export PATH=$PATH:$GOPATH/bin
+
+source ~/.scripts/tmuxinator.zsh
+
+export ERL_LIBS="$HOME/.erl_libs/"
+alias erl="kjell "
 

@@ -5,9 +5,11 @@ export PATH=$PATH:$HOME/.scripts
 export AUTOJUMP_AUTOCOMPLETE_CMDS='cp vim cd'
 export EDITOR='mvim -v '
 export SHELL='/usr/local/bin/zsh'
+autoload run-help
 autoload -U zmv
 autoload colors;
 colors
+HELPDIR=/usr/local/share/zsh/help
 HISTFILE=~/.histfile
 HISTSIZE=SAVEHIST=9999999
 autoload -Uz compinit
@@ -30,7 +32,7 @@ REPORTTIME=10
 
 #vi editing
 bindkey -v
-bindkey "^R" history-incremental-search-backward
+#bindkey "^R" history-incremental-search-backward
 #autoload -Uz bashcompinit
 #bashcompinit
 #source /usr/local/share/compleat-1.0/compleat_setup
@@ -111,11 +113,9 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 
+plugins=(autojump themes dirpersist aws \
+    vi-mode zsh-syntax-highlighting gitfast alias-tips itunes extract)
 
-plugins=(autojump themes dirpersist history history-substring-search vi-mode zsh-syntax-highlighting gitfast)
-#gnu-utils)
-#vagrant tmux pip \
-#themes knife tmuxinator rebar itunes \
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
@@ -146,10 +146,11 @@ fi
 alias irssi='TERM=screen-256color irssi'
 
 alias -g TC='| tee command.log'
+alias -g EV='| xargs -o vim'
 alias -g T='| tee '
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.tmuxinator/scripts/tmuxinator" ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 setopt NO_NOMATCH
 alias mg='git diff --name-status --diff-filter=U | sort | cut -f2'
@@ -160,4 +161,13 @@ alias s='git checkout '
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+source /usr/local/share/zsh/site-functions/_aws
+
 nvm use stable
+
+alias cfopen="git ls-files --modified --deleted --others -z | xargs -o vim"
+ulimit -n 65536
+ulimit -u 2048
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
